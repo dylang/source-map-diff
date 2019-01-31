@@ -1,0 +1,6 @@
+{
+  "extends": ["tslint-xo", "tslint-config-prettier"],
+  "rules": {
+    "indent": [true, "spaces", 4]
+  }
+}

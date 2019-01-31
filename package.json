@@ -1,0 +1,51 @@
+{
+  "name": "source-map-diff",
+  "version": "1.0.0",
+  "description": "Compare source maps to understand why a bundle changed in size.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "test": "jest",
+    "format": "prettier --write \"{src/*.ts}\" --loglevel error && tslint -p . --fix"
+  },
+  "repository": "https://github.com/dylang/source-map-diff",
+  "author": "Dylan Greene",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "common-path-prefix": "^1.0.0",
+    "got": "^9.6.0",
+    "source-map-explorer": "^1.6.0",
+    "text-treeview": "^1.0.1",
+    "wdio-sync": "5.0.0-beta.2",
+    "webtreemap": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/got": "^9.4.0",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
+    "concurrently": "^4.1.0",
+    "jest": "^24.0.0",
+    "nodemon": "^1.18.9",
+    "prettier": "^1.16.1",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.1",
+    "tslint": "^5.12.1",
+    "tslint-xo": "^0.12.0",
+    "typescript": "^3.2.4"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
