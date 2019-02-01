@@ -1,60 +1,43 @@
-# source-map-diff [![Build Status](https://travis-ci.org/sindresorhus/p-finally.svg?branch=master)](https://travis-ci.org/sindresorhus/p-finally)
+# source-map-diff
 
-> Compare current sourcemap to previous to understand why it grew in size.
+![ci](https://github.com/yargs/yargs/workflows/ci/badge.svg)
+[![NPM version][npm-image]][npm-url]
 
+> Compare current sourcemap to the previous to understand why it changed in size.
 
 ## Install
 
 ```
 $ npm install --save source-map-diff
-# or
+
 $ yarn add source-map-diff
 ```
 
-## Usage
+## Command-line usage
 
-```js
-import { sourceMapDiff, generateTree } from 'source-map-diff';
-
-const sourcemapDiff = await sourceMapDiff(filenameOrUrlToCurrentJS, filenameOrUrlToPreviousJS);
-const output = generateTree(sourcemapDiff);
+```bash
+$ source-map-diff --previousSrc <filename-or-url> --currentSrc <filename-or-url>
 ```
 
+Optional `--format html` to get the output as an HTML string.
 
 ## API
 
-### sourceMapDiff(filenameOrUrlToCurrentJS, filenameOrUrlToPreviousJS)
+### sourceMapDiffAsHtml({ previousSrc, currentSrc }): Promise<string>
+
+Returns a `Promise` for HTML output that can be put on a web page. Classnames are included but not styling.
+
+### sourceMapDiffForConsole({ previousSrc, currentSrc })
+
+Returns a `Promise` for color console output.
+
+### sourceMapDiff({ previousSrc, currentSrc })
 
 Returns a `Promise` for a `SourcemapDiff`.
-
-#### filenameOrUrlToCurrentJS
-
-Type: `String`
-
-Absolute filename or url to the JS file. 
-The sourcemap will be automatically found using `# sourceMappingURL=` or appending `.map` to the filename or url.
-
-If the sourcemap cannot be found an exception will be thrown.
-
-
-### generateTree(sourcemapDiff)
-
-Returns a `Promise` for a `SourcemapDiff`.
-
-#### filenameOrUrlToCurrentJS
-
-Type: `String`
-
-Absolute filename or url to the JS file. 
-The sourcemap will be automatically found using `# sourceMappingURL=` or appending `.map` to the filename or url.
-
-If the sourcemap cannot be found an exception will be thrown.
-
 
 ## Related
 
-- [source-map-explorer](https://github.com/sindresorhus/p-try) - `Promise#try()` ponyfill - Starts a promise chain
+- [source-map-explorer](https://github.com/danvk/source-map-explorer) - Create a visualization from the sourcemap. Source-map-diff uses this library to parse the source maps.
 
-## License
-
-MIT © [Dylan Greene](https://github.com/dylang)
+[npm-url]: https://www.npmjs.com/package/yargs
+[npm-image]: https://img.shields.io/npm/v/yargs.svg

@@ -1,1 +1,1 @@
-export {generateTree} from './generate-tree';
+export { generateTree } from './generate-tree';

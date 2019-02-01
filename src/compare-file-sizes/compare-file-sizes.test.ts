@@ -1,7 +1,7 @@
-import {getComparison} from './get-comparison';
+import { compareFileSizes } from './compare-file-sizes';
 
-describe('get-comparisons', () => {
-    test('getComparison', () => {
+describe('compare-file-sizes', () => {
+    test('compareFileSizes', () => {
         const current = {
             same: 1000,
             bigger: 2000,
@@ -14,7 +14,7 @@ describe('get-comparisons', () => {
             smaller: 750,
             removed: 3000
         };
-        const result = getComparison(current, previous);
+        const result = compareFileSizes(current, previous);
         expect(result).toEqual([
             {
                 added: true,
@@ -64,7 +64,6 @@ describe('get-comparisons', () => {
                 previousSize: 750,
                 removed: false
             }
-            ]
-        );
+        ]);
     });
 });

@@ -1,7 +1,7 @@
-import {fromFileSystem} from './from-file-system';
+import { fromFileSystem } from './from-file-system';
 
 jest.mock('fs', () => ({
-    readFileSync: (filename: string) => filename
+    readFileSync: (filename: string): string => filename
 }));
 
 describe('from-file-system', () => {

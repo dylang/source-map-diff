@@ -3,42 +3,53 @@
   "version": "1.0.0",
   "description": "Compare source maps to understand why a bundle changed in size.",
   "main": "index.js",
+  "bin": {
+    "source-map-diff": "src/cli"
+  },
   "scripts": {
     "compile": "tsc -p .",
     "test": "jest",
-    "format": "prettier --write \"{src/*.ts}\" --loglevel error && tslint -p . --fix"
+    "lint": "eslint . --fix"
   },
   "repository": "https://github.com/dylang/source-map-diff",
   "author": "Dylan Greene",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "common-path-prefix": "^1.0.0",
-    "got": "^9.6.0",
-    "source-map-explorer": "^1.6.0",
+    "chalk": "^4.1.0",
+    "common-path-prefix": "^3.0.0",
+    "got": "^11.8.1",
+    "source-map-explorer": "^2.5.2",
     "text-treeview": "^1.0.1",
-    "wdio-sync": "5.0.0-beta.2",
-    "webtreemap": "^2.0.1"
+    "webtreemap": "^2.0.1",
+    "yargs-parser": "20.2.4"
   },
   "devDependencies": {
-    "@types/got": "^9.4.0",
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.18",
-    "concurrently": "^4.1.0",
-    "jest": "^24.0.0",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.16.1",
-    "ts-jest": "^23.10.5",
-    "ts-node": "^8.0.1",
-    "tslint": "^5.12.1",
-    "tslint-xo": "^0.12.0",
-    "typescript": "^3.2.4"
+    "@types/jest": "^26.0.20",
+    "@types/nodemon": "^1.19.0",
+    "@types/prettier": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "eslint": "7.19.0",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-config-xo": "0.34.0",
+    "eslint-import-resolver-typescript": "2.3.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.1.3",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-unicorn": "27.0.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.5.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)test)\\.ts$",
     "moduleFileExtensions": [
       "ts",
       "tsx",

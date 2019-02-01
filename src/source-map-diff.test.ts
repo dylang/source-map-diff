@@ -1,54 +1,39 @@
-import {sourceMapDiff} from './source-map-diff';
+import { sourceMapDiff } from './source-map-diff';
 
 jest.mock('./load-source-map', () => ({
-    loadSourceMap: (name: string) => ({src: name, map: `${name}.map`})
-}));
-jest.mock('./parse-source-map', () => ({
-    parseSourceMap: (src: string, map: string) => ({
-        src: src.length * 1000,
-        [map]: map.length * 1000
-    })
+    loadSourceMap: (name: string) =>
+        name === 'current.js'
+            ? { 'src/bigger': 10000, 'src/smaller': 200, 'src/same': 500 }
+            : { 'src/bigger': 100, 'src/smaller': 2000, 'src/same': 500 }
 }));
 
 describe('source-map-diff', () => {
     test('sourceMapDiff', async () => {
-        const {diff} = await sourceMapDiff({currentSrc: 'current.js', previousSrc: 'previous.js'});
+        const { diff } = await sourceMapDiff({ currentSrc: 'current.js', previousSrc: 'previous.js' });
         expect(diff).toEqual([
             {
                 added: false,
-                changeInSize: -1000,
+                changeInSize: 9900,
                 currentSize: 10000,
-                isDecreased: true,
-                isIncreased: false,
-                isSame: false,
-                name: 'src',
-                path:  ['src'],
-                previousSize: 11000,
-                removed: false,
-            },
-            {
-                added: true,
-                changeInSize: 14000,
-                currentSize: 14000,
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'current.js.map',
-                path: ['current.js.map'],
-                previousSize: 0,
+                name: 'src/bigger',
+                path: ['src', 'bigger'],
+                previousSize: 100,
                 removed: false
             },
             {
                 added: false,
-                changeInSize: -15000,
-                currentSize: 0,
+                changeInSize: -1800,
+                currentSize: 200,
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'previous.js.map',
-                path: ['previous.js.map'],
-                previousSize: 15000,
-                removed: true
+                name: 'src/smaller',
+                path: ['src', 'smaller'],
+                previousSize: 2000,
+                removed: false
             }
         ]);
     });

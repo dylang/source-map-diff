@@ -1,27 +1,26 @@
 {
-  "compilerOptions": {
-    "pretty": true,
-    "outDir": "lib",
-    "module": "commonjs",
-    "target": "es2017",
-    "lib": ["es2017"],
-    "sourceMap": true,
-    "jsx": "react",
-    "declaration": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"declaration": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"jsx": "react",
+		"lib": ["es2017", "es2018", "es2019"],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"outDir": "lib",
+		"pretty": true,
+		"sourceMap": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"target": "es2017",
+		"typeRoots": ["./node_modules/@types", "./src/@types"]
+	},
+	"include": [".eslintrc.js","**/*"],
+  "exclude": ["node_modules", "fixtures"]
 }

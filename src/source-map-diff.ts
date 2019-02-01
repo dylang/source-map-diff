@@ -1,18 +1,22 @@
-import {getComparison} from './get-comparison';
-import {loadSourceMap} from './load-source-map';
-import {generateTree} from './generate-tree';
+import { compareFileSizes } from './compare-file-sizes';
+import { loadSourceMap } from './load-source-map';
+import { generateTree } from './generate-tree';
 
-export const sourceMapDiff = async ({currentSrc, previousSrc, generateAnsiTree = false, generateHtmlTree = false}: SourceMapDiffInput) => {
-    const [current, previous] = await Promise.all([
-        loadSourceMap(currentSrc),
-        loadSourceMap(previousSrc)
-    ]);
+export interface SourceMapDiffInput {
+    currentSrc: string;
+    previousSrc: string;
+}
 
-    const diff = getComparison(current, previous);
+export const sourceMapDiff = async ({ currentSrc, previousSrc }: SourceMapDiffInput) => {
+    const [current, previous] = await Promise.all([loadSourceMap(currentSrc), loadSourceMap(previousSrc)]);
 
-    return {
-        diff,
-        html: generateHtmlTree ? generateTree(diff, {asHtml: true}) : undefined,
-        ansi: generateAnsiTree ? generateTree(diff, {asColor: true}) : undefined
-    };
+    return compareFileSizes(current, previous);
+};
+
+export const sourceMapDiffAsHtml = async ({ currentSrc, previousSrc }: SourceMapDiffInput) => {
+    return generateTree(await sourceMapDiff({ currentSrc, previousSrc }), 'html');
+};
+
+export const sourceMapDiffForConsole = async ({ currentSrc, previousSrc }: SourceMapDiffInput) => {
+    return generateTree(await sourceMapDiff({ currentSrc, previousSrc }), 'console');
 };

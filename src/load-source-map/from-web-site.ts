@@ -1,6 +1,6 @@
-import {URL} from 'url';
-import * as path from 'path';
-import * as got from 'got';
+import { URL } from 'url';
+import path from 'path';
+import got from 'got';
 
 const tryMap = async (srcUrl: string, currentSrc: string) => {
     const sourcemapNameGuess = `${srcUrl}.map`;
@@ -11,18 +11,20 @@ const tryMap = async (srcUrl: string, currentSrc: string) => {
     const absoluteSourcemapName = `${url.origin}/${sourcemapFilename}`;
 
     try {
-        const {body: map} = await got.get(sourcemapNameGuess);
+        const { body: map }: { body: string } = await got.get(sourcemapNameGuess);
         return map;
     } catch (err1) {
         if (!sourcemapFilename) {
-            throw new Error(`Source Map not found. Tried ${sourcemapNameGuess} and didn't find "# sourceMappingURL=" in ${srcUrl}.`);
+            throw new Error(
+                `Source Map not found. Tried ${sourcemapNameGuess} and didn't find "# sourceMappingURL=" in ${srcUrl}.`
+            );
         }
         try {
-            const {body: map} = await got.get(relativeSourcemapName);
+            const { body: map }: { body: string } = await got.get(relativeSourcemapName);
             return map;
         } catch (err2) {
             try {
-                const {body: map} = await got.get(absoluteSourcemapName);
+                const { body: map }: { body: string } = await got.get(absoluteSourcemapName);
                 return map;
             } catch (err3) {
                 throw new Error(`
@@ -41,7 +43,7 @@ const tryMap = async (srcUrl: string, currentSrc: string) => {
 };
 
 export const fromWebSite = async (srcUrl: string) => {
-    const {body: currentSrc} = await got.get(srcUrl);
+    const { body: currentSrc }: { body: string } = await got.get(srcUrl);
     const currentMap = await tryMap(srcUrl, currentSrc);
 
     return {

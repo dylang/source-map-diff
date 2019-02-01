@@ -1,42 +1,31 @@
-import chalk from 'chalk';
-import treeview from 'text-treeview';
-import {combinePathsIntoTree, SortBy} from './combine-paths-into-tree';
-import {addComparisonsToBranches} from './add-comparisons-to-branches';
+import treeView from 'text-treeview';
+import { Data } from '../compare-file-sizes';
+import { combinePathsIntoTree } from './combine-paths-into-tree';
+import { addComparisonsToBranches } from './add-comparisons-to-branches';
+import { formatLabel } from './format-label';
+
+export interface Tree {
+    name: string;
+    id?: string;
+    size: number;
+    data: Data | undefined;
+    children: Tree[];
+}
+
+export type OutputFormat = 'html' | 'console';
 
 // Generates an HTML tree from an array of dependencies.
-export const generateTree = (data: Data[], options: Partial<GenerateTreeOptions>) => {
-    const {asColor, asHtml} = options;
-    const dependencyTree = addComparisonsToBranches(combinePathsIntoTree(data, SortBy.name));
+export const generateTree = (data: Data[], outputFormat: OutputFormat): Tree[] => {
+    const dependencyTree = addComparisonsToBranches(combinePathsIntoTree(data, 'name'));
 
-    return treeview(dependencyTree, {
+    return treeView(dependencyTree, {
         showRootLines: true,
-        format: (indents: string[], treeNode: string, node: Tree) => {
-            const {isIncreased= false, changeInSize= 0, added= false, removed= false} = node.data || {};
-            const changeInSizeString = data
-                ? `${isIncreased ? '+' : ''}${changeInSize.toLocaleString()} bytes`
-                : '';
+        format: (indents, treeNode, { name, data }) => {
+            if (!data) {
+                throw new Error(`${name} is missing data...`);
+            }
 
-            const formatLabelHtml = (label: string) => {
-                return `<span class="${isIncreased ? 'increased' : 'decreased'} ${added ? 'added' : ''}">${label} <span class="change">${changeInSizeString}</span></span>`;
-            };
-
-            const formatLabelColor = (label: string) => {
-                const color = isIncreased ? chalk.green : chalk.red;
-                const addedOrRemoved = added ? '(new)' : removed ? '(removed)' : '';
-                const relativeSize = color('x'.repeat(Math.abs(changeInSize) / 100));
-
-                return `${color(label)} ${changeInSizeString} ${relativeSize} ${addedOrRemoved}`;
-            };
-
-            return [
-                indents.join(''),
-                treeNode,
-                ` [${node.size}] `,
-                changeInSize === 0 ? node.name : '',
-                asHtml && changeInSize !== 0 ? formatLabelHtml(node.name) : '',
-                asColor && changeInSize !== 0 ? formatLabelColor(node.name) : '',
-                '\n'
-            ].join('');
+            return [indents.join(''), treeNode, formatLabel(name, data, outputFormat), '\n'].join('');
         }
     });
 };
