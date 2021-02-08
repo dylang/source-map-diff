@@ -27,7 +27,7 @@ export const generateTree = (data: Data[], outputFormat: OutputFormat): string =
 
             return [
                 outputFormat === 'html' ? '<div class="diff-line"><span class="diff-branch">' : '',
-                ...(outputFormat === 'html' ? indents.map(() => '&nbsp;') : indents),
+                ...indents,
                 treeNode,
                 outputFormat === 'html' ? '</span>' : '',
                 formatLabel(name, data, outputFormat),
