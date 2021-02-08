@@ -20,16 +20,14 @@ export const parseSourceMap = async ({
         }
     });
 
-    const { '[no source]': noSourceMap, ...everythingElse } = files;
-
     const commonPrefix = commonPathPrefix(
-        Object.keys(everythingElse).filter(
+        Object.keys(files).filter(
             (pathValue: string) =>
                 !pathValue.startsWith('webpack') && !pathValue.startsWith('[') && !pathValue.includes(' ')
         )
     );
 
-    const paths: [string, number][] = Object.entries(everythingElse)
+    const paths: [string, number][] = Object.entries(files)
         .sort((a, b) => (a[0] > b[0] ? -1 : 1))
         .map(([filepath, { size }]) => [
             filepath
@@ -42,8 +40,5 @@ export const parseSourceMap = async ({
             size
         ]);
 
-    return {
-        ...Object.fromEntries<number>(paths),
-        '[comments & bundler helper functions]': noSourceMap?.size
-    };
+    return Object.fromEntries<number>(paths);
 };

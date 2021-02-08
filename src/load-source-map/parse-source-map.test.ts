@@ -30,7 +30,7 @@ describe('parse-source-map', () => {
             '.cache/route-announcer-props.js': 203,
             '.cache/strip-prefix.js': 131,
             '[EOLs]': 3,
-            '[comments & bundler helper functions]': 9713,
+            '[no source]': 9713,
             '[sourceMappingURL]': 38,
             '[unmapped]': 175,
             'gatsby-browser.js': 1104,
