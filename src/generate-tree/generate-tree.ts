@@ -15,17 +15,27 @@ export interface Tree {
 export type OutputFormat = 'html' | 'console';
 
 // Generates an HTML tree from an array of dependencies.
-export const generateTree = (data: Data[], outputFormat: OutputFormat): Tree[] => {
+export const generateTree = (data: Data[], outputFormat: OutputFormat): string => {
     const dependencyTree = addComparisonsToBranches(combinePathsIntoTree(data, 'name'));
 
-    return treeView(dependencyTree, {
+    const treeString = treeView(dependencyTree, {
         showRootLines: true,
         format: (indents, treeNode, { name, data }) => {
             if (!data) {
                 throw new Error(`${name} is missing data...`);
             }
 
-            return [indents.join(''), treeNode, formatLabel(name, data, outputFormat), '\n'].join('');
+            return [
+                outputFormat === 'html' ? '<div class="diff-line"><span class="diff-branch">' : '',
+                outputFormat === 'html' ? indents.map(() => '&nbsp;') : indents.join(''),
+                treeNode,
+                outputFormat === 'html' ? '</span>' : '',
+                formatLabel(name, data, outputFormat),
+                outputFormat === 'html' ? '</div>' : '',
+                '\n'
+            ].join('');
         }
     });
+
+    return outputFormat === 'html' ? `<div class="source-map-diff">\n${treeString}\n</div>` : treeString;
 };

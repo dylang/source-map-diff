@@ -25,5 +25,5 @@ declare module 'text-treeview' {
         format(indents: string[], treeNode: string, node: Tree): string;
     }
 
-    export default function textTreeView(data: Tree[], options: Partial<TextTreeViewOptions>): Tree[];
+    export default function textTreeView(data: Tree[], options: Partial<TextTreeViewOptions>): string;
 }
