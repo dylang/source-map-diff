@@ -4,7 +4,7 @@ import { generateTree } from './generate-tree';
 
 export interface SourceMapDiffInput {
     currentSrc: string;
-    previousSrc: string;
+    previousSrc?: string;
 }
 
 export const sourceMapDiff = async ({ currentSrc, previousSrc }: SourceMapDiffInput) => {

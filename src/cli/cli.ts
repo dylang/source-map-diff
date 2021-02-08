@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import yargsParser from 'yargs-parser';
 import { sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff';
 
@@ -12,14 +11,6 @@ export const cli = async () => {
             --format html                     Default is console.
         `);
         return;
-    }
-
-    if (!previousSrc || typeof previousSrc !== 'string') {
-        throw new Error('--previousSrc <filename or url> is required.');
-    }
-
-    if (!currentSrc || typeof currentSrc !== 'string') {
-        throw new Error('--previousSrc <filename or url> is required.');
     }
 
     const results =
