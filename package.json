@@ -16,10 +16,10 @@
     "lib"
   ],
   "scripts": {
-    "build": "tsc -p .",
+    "build": "rm -rf ./lib && tsc -p .",
     "test": "jest && eslint .",
     "lint": "eslint . --fix",
-    "version": "tsc -p ."
+    "version": "rm -rf ./lib && tsc -p ."
   },
   "repository": "https://github.com/dylang/source-map-diff",
   "author": "Dylan Greene",
