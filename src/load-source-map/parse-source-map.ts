@@ -27,18 +27,17 @@ export const parseSourceMap = async ({
         )
     );
 
-    const paths: [string, number][] = Object.entries(files)
-        .sort((a, b) => (a[0] > b[0] ? -1 : 1))
-        .map(([filepath, { size }]) => [
-            filepath
-                .replace(commonPrefix, '')
-                .replace(/~/g, '/')
-                .replace(/\.\./g, '/')
-                .replace(/\/+/g, '/')
-                .replace(/\.(.*)\?.*/, '.$1')
-                .replace(/^\//g, ''),
-            size
-        ]);
+    const paths: [string, number][] = Object.entries(files).map(([filepath, { size }]) => [
+        filepath
+            .replace(commonPrefix, '')
+            .replace(/~/g, '/')
+            .replace(/\.\./g, '/')
+            .replace(/\/+/g, '/')
+            .replace(/\.(.*)\?.*/, '.$1')
+            .replace(/^\//g, '')
+            .replace(/no source/, 'generated'),
+        size
+    ]);
 
-    return Object.fromEntries<number>(paths);
+    return Object.fromEntries<number>(paths.sort((a, b) => (a[0] > b[0] ? -1 : 1)));
 };
