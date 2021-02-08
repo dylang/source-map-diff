@@ -16,7 +16,7 @@ export const parseSourceMap = async ({
         bundles: [{ files }]
     } = await explore([{ code: src, map }], {
         replaceMap: {
-            '^[^:]*:///': '/' // Remove webpack://
+            '^[^:]*:/+': '/' // Remove webpack://
         }
     });
 
