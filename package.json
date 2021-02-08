@@ -2,13 +2,22 @@
   "name": "source-map-diff",
   "version": "1.0.0",
   "description": "Compare source maps to understand why a bundle changed in size.",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "keywords": [
+    "sourcemap",
+    "source-map",
+    "bundle size"
+  ],
   "bin": {
     "source-map-diff": "src/cli"
   },
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "compile": "tsc -p .",
-    "test": "jest",
+    "build": "tsc -p .",
+    "test": "jest && eslint .",
     "lint": "eslint . --fix"
   },
   "repository": "https://github.com/dylang/source-map-diff",
@@ -39,7 +48,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-unicorn": "27.0.0",
     "jest": "^26.6.3",
-    "nodemon": "^2.0.7",
+    "np": "7.3.0",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.0",
     "ts-node": "^9.1.1",
@@ -52,11 +61,8 @@
     "testRegex": "(/__tests__/.*|(\\.|/)test)\\.ts$",
     "moduleFileExtensions": [
       "ts",
-      "tsx",
       "js",
-      "jsx",
-      "json",
-      "node"
+      "json"
     ]
   }
 }
