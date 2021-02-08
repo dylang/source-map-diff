@@ -13,6 +13,7 @@
     "source-map-diff": "src/cli"
   },
   "files": [
+    "src",
     "lib"
   ],
   "scripts": {

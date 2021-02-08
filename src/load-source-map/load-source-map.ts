@@ -9,9 +9,11 @@ export const loadSourceMap = async (filename?: string) => {
 
     try {
         const sourcemap = filename.startsWith('http') ? await fromWebSite(filename) : fromFileSystem(filename);
-        return parseSourceMap(sourcemap);
+        // Make sure we catch errors for parseSourceMap.
+        const fileSizes = await parseSourceMap(sourcemap);
+        return fileSizes;
     } catch (err) {
-        console.warn(err.message, filename);
+        console.warn('source-map-diff', filename, err.message);
         return {};
     }
 };
