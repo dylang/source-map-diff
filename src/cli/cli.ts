@@ -17,7 +17,11 @@ export const cli = async () => {
         format === 'html'
             ? await sourceMapDiffAsHtml({ previousSrc, currentSrc })
             : format === 'json'
-            ? JSON.stringify(await sourceMapDiff({ previousSrc, currentSrc }), null, 2)
+            ? JSON.stringify(
+                  await sourceMapDiff({ previousSrc, currentSrc }),
+                  (key, value: unknown) => (key === 'path' ? undefined : value),
+                  2
+              )
             : await sourceMapDiffForConsole({ previousSrc, currentSrc });
 
     console.log(results);
