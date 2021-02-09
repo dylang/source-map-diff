@@ -1,5 +1,5 @@
 import yargsParser from 'yargs-parser';
-import { sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff';
+import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff';
 
 export const cli = async () => {
     const { previousSrc, currentSrc, format } = yargsParser(process.argv);
@@ -8,7 +8,7 @@ export const cli = async () => {
         console.log(`
             --currentSrc <filename or url>    Filename or URL to the Javascript that references a sourcemap.
             --previousSrc <filename or url>   Filename or URL to the Javascript that references a sourcemap.
-            --format html                     Default is console.
+            --format html                     html, json, or console. Default is console.
         `);
         return;
     }
@@ -16,6 +16,8 @@ export const cli = async () => {
     const results =
         format === 'html'
             ? await sourceMapDiffAsHtml({ previousSrc, currentSrc })
+            : format === 'json'
+            ? JSON.stringify(await sourceMapDiff({ previousSrc, currentSrc }), null, 2)
             : await sourceMapDiffForConsole({ previousSrc, currentSrc });
 
     console.log(results);

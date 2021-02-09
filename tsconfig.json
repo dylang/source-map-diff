@@ -21,6 +21,6 @@
 		"target": "es2017",
 		"typeRoots": ["./node_modules/@types", "./src/@types"]
 	},
-	"include": [".eslintrc.js", "**/*"],
+	"include": [".eslintrc.js", "src/**/*", "*.js"],
   "exclude": ["/node_modules/**/*", "/fixtures/**/*"]
 }

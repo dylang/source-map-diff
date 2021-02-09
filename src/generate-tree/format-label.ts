@@ -32,6 +32,6 @@ export const formatLabel = (
             .join('');
     }
 
-    const color = isIncreased ? chalk.green : chalk.red;
-    return `${color(filename)} ${changeInSizeString} ${addedOrRemoved}`;
+    const color = isIncreased ? chalk.red : chalk.green;
+    return `${color(filename)} ${changeInSizeString} ${color.bold(addedOrRemoved)}`;
 };
