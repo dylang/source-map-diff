@@ -1,9 +1,9 @@
+import { Tree } from 'text-treeview';
 import { Data } from '../compare-file-sizes';
-import { Tree } from './generate-tree';
 
 export type SortBy = 'name' | 'size';
 
-export const reduceChain = (trees: Tree[], data: Data, sortBy: SortBy) => {
+export const reduceChain = (trees: Tree<Data>[], data: Data, sortBy: SortBy) => {
     if (data.path.length === 0) {
         return trees;
     }
@@ -45,4 +45,4 @@ export const reduceChain = (trees: Tree[], data: Data, sortBy: SortBy) => {
 };
 
 export const combinePathsIntoTree = (arrayOfPaths: Data[], sortBy: SortBy) =>
-    arrayOfPaths.reduce<Tree[]>((acc: Tree[], data: Data) => reduceChain(acc, data, sortBy), []);
+    arrayOfPaths.reduce<Tree<Data>[]>((acc: Tree<Data>[], data: Data) => reduceChain(acc, data, sortBy), []);

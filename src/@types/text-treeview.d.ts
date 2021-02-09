@@ -1,29 +1,16 @@
 declare module 'text-treeview' {
-    export interface Data {
-        filename: string;
-        path: string[];
-        added: boolean;
-        removed: boolean;
-        isIncreased: boolean;
-        isDecreased: boolean;
-        isSame: boolean;
-        currentSize: number;
-        previousSize: number;
-        changeInSize: number;
-    }
-
-    export interface Tree {
+    export interface Tree<Data> {
         name: string;
         id?: string;
         size: number;
         data: Data | undefined;
-        children: Tree[];
+        children: Tree<Data>[];
     }
 
-    export interface TextTreeViewOptions {
+    export interface TextTreeViewOptions<Data> {
         showRootLines: boolean;
-        format(indents: string[], treeNode: string, node: Tree): string;
+        format(indents: string[], treeNode: string, node: Tree<Data>): string;
     }
 
-    export default function textTreeView(data: Tree[], options: Partial<TextTreeViewOptions>): string;
+    export default function textTreeView<Data>(data: Tree<Data>[], options: Partial<TextTreeViewOptions<Data>>): string;
 }

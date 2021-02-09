@@ -1,13 +1,13 @@
+import { Tree } from 'text-treeview';
 import { Data } from '../compare-file-sizes';
-import { Tree } from './generate-tree';
 
-export const addComparisonsToBranches = (tree: Tree[]) => {
+export const addComparisonsToBranches = (tree: Tree<Data>[]) => {
     /*
         Traverse until we hit data
         Return data
         Set node's data based on combination of all returned data
      */
-    return tree.map((node: Tree) => {
+    return tree.map((node: Tree<Data>) => {
         if (!node.data) {
             // Must be a branch
             const children = addComparisonsToBranches(node.children);
