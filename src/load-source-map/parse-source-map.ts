@@ -15,6 +15,7 @@ export const parseSourceMap = async ({
     const {
         bundles: [{ files }]
     } = await explore([{ code: src, map }], {
+        noBorderChecks: true, // don't throw error for bad sourcemaps
         replaceMap: {
             '^[^:]*:/+': '/' // Remove webpack://
         }
