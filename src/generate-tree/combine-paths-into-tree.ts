@@ -45,4 +45,4 @@ export const reduceChain = (trees: Tree[], data: Data, sortBy: SortBy) => {
 };
 
 export const combinePathsIntoTree = (arrayOfPaths: Data[], sortBy: SortBy) =>
-    arrayOfPaths.reduce((acc: Tree[], data: Data) => reduceChain(acc, data, sortBy), []);
+    arrayOfPaths.reduce<Tree[]>((acc: Tree[], data: Data) => reduceChain(acc, data, sortBy), []);

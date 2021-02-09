@@ -23,7 +23,7 @@ describe('compare-file-sizes', () => {
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'added',
+                filename: 'added',
                 path: ['added'],
                 previousSize: 0,
                 removed: false
@@ -35,7 +35,7 @@ describe('compare-file-sizes', () => {
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'bigger',
+                filename: 'bigger',
                 path: ['bigger'],
                 previousSize: 1500,
                 removed: false
@@ -47,7 +47,7 @@ describe('compare-file-sizes', () => {
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'removed',
+                filename: 'removed',
                 path: ['removed'],
                 previousSize: 3000,
                 removed: true
@@ -59,7 +59,7 @@ describe('compare-file-sizes', () => {
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'smaller',
+                filename: 'smaller',
                 path: ['smaller'],
                 previousSize: 750,
                 removed: false

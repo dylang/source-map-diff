@@ -1,6 +1,6 @@
 declare module 'text-treeview' {
     export interface Data {
-        name: string;
+        filename: string;
         path: string[];
         added: boolean;
         removed: boolean;

@@ -3,7 +3,7 @@ export interface Files {
 }
 
 export interface Data {
-    name: string;
+    filename: string;
     path: string[];
     added: boolean;
     removed: boolean;
@@ -31,7 +31,7 @@ export const compareFileSizes = (currentFiles: Files, previousFiles: Files): Dat
             const isSame = !isIncreased && !isDecreased;
 
             const data: Data = {
-                name,
+                filename: name,
                 path: name.split('/'),
                 added: previousSize === 0,
                 removed: currentSize === 0,

@@ -19,7 +19,7 @@ describe('source-map-diff', () => {
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'src/bigger',
+                filename: 'src/bigger',
                 path: ['src', 'bigger'],
                 previousSize: 100,
                 removed: false
@@ -31,7 +31,7 @@ describe('source-map-diff', () => {
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'src/smaller',
+                filename: 'src/smaller',
                 path: ['src', 'smaller'],
                 previousSize: 2000,
                 removed: false
@@ -49,7 +49,7 @@ describe('source-map-diff', () => {
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'src/bigger',
+                filename: 'src/bigger',
                 path: ['src', 'bigger'],
                 previousSize: 100,
                 removed: false
@@ -61,7 +61,7 @@ describe('source-map-diff', () => {
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'src/smaller',
+                filename: 'src/smaller',
                 path: ['src', 'smaller'],
                 previousSize: 2000,
                 removed: false
@@ -79,7 +79,7 @@ describe('source-map-diff', () => {
                 isDecreased: false,
                 isIncreased: true,
                 isSame: false,
-                name: 'src/bigger',
+                filename: 'src/bigger',
                 path: ['src', 'bigger'],
                 previousSize: 100,
                 removed: false
@@ -91,7 +91,7 @@ describe('source-map-diff', () => {
                 isDecreased: true,
                 isIncreased: false,
                 isSame: false,
-                name: 'src/smaller',
+                filename: 'src/smaller',
                 path: ['src', 'smaller'],
                 previousSize: 2000,
                 removed: false

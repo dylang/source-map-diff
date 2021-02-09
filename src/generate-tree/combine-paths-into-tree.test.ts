@@ -14,25 +14,25 @@ describe('combine-paths-into-tree', () => {
         const results = combinePathsIntoTree(
             [
                 {
-                    name: 'a/b/c1',
+                    filename: 'a/b/c1',
                     path: ['a', 'b', 'c1'],
                     changeInSize: 1,
                     ...data
                 },
                 {
-                    name: 'a/b/c2',
+                    filename: 'a/b/c2',
                     path: ['a', 'b', 'c2'],
                     changeInSize: 2,
                     ...data
                 },
                 {
-                    name: 'c/b/a',
+                    filename: 'c/b/a',
                     path: ['c', 'b', 'a'],
                     changeInSize: 3,
                     ...data
                 },
                 {
-                    name: 'c/b2/a2',
+                    filename: 'c/b2/a2',
                     path: ['c', 'b2', 'a2'],
                     changeInSize: 4,
                     ...data
@@ -49,7 +49,7 @@ describe('combine-paths-into-tree', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 1,
-                                    name: 'a/b/c1',
+                                    filename: 'a/b/c1',
                                     path: ['c1'],
                                     ...data
                                 },
@@ -61,7 +61,7 @@ describe('combine-paths-into-tree', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 2,
-                                    name: 'a/b/c2',
+                                    filename: 'a/b/c2',
                                     path: ['c2'],
                                     ...data
                                 },
@@ -89,7 +89,7 @@ describe('combine-paths-into-tree', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 3,
-                                    name: 'c/b/a',
+                                    filename: 'c/b/a',
                                     path: ['a'],
                                     ...data
                                 },
@@ -109,7 +109,7 @@ describe('combine-paths-into-tree', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 4,
-                                    name: 'c/b2/a2',
+                                    filename: 'c/b2/a2',
                                     path: ['a2'],
                                     ...data
                                 },

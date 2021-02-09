@@ -30,7 +30,7 @@ export const addComparisonsToBranches = (tree: Tree[]) => {
                 isDecreased: currentSize < previousSize,
                 isIncreased: currentSize > previousSize,
                 isSame: currentSize === previousSize,
-                name: '',
+                filename: '',
                 path: [],
 
                 removed: children.every(({ data }: { data?: Data }) => !data || data.removed)

@@ -20,7 +20,7 @@ describe('add-comparisons-to-branches', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 1,
-                                    name: 'a/b/c1',
+                                    filename: 'a/b/c1',
                                     path: ['c1'],
                                     ...data
                                 },
@@ -32,7 +32,7 @@ describe('add-comparisons-to-branches', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 2,
-                                    name: 'a/b/c2',
+                                    filename: 'a/b/c2',
                                     path: ['c2'],
                                     ...data
                                 },
@@ -60,7 +60,7 @@ describe('add-comparisons-to-branches', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 3,
-                                    name: 'c/b/a',
+                                    filename: 'c/b/a',
                                     path: ['a'],
                                     ...data
                                 },
@@ -80,7 +80,7 @@ describe('add-comparisons-to-branches', () => {
                                 children: [],
                                 data: {
                                     changeInSize: 4,
-                                    name: 'c/b2/a2',
+                                    filename: 'c/b2/a2',
                                     path: ['a2'],
                                     ...data
                                 },
@@ -114,7 +114,7 @@ describe('add-comparisons-to-branches', () => {
                             isDecreased: true,
                             isIncreased: true,
                             isSame: true,
-                            name: 'a/b/c1',
+                            filename: 'a/b/c1',
                             path: ['c1'],
                             previousSize: 1,
                             removed: true
@@ -132,7 +132,7 @@ describe('add-comparisons-to-branches', () => {
                             isDecreased: true,
                             isIncreased: true,
                             isSame: true,
-                            name: 'a/b/c2',
+                            filename: 'a/b/c2',
                             path: ['c2'],
                             previousSize: 1,
                             removed: true
@@ -149,7 +149,7 @@ describe('add-comparisons-to-branches', () => {
                     isDecreased: false,
                     isIncreased: false,
                     isSame: true,
-                    name: '',
+                    filename: '',
                     path: [],
                     previousSize: 2,
                     removed: true
@@ -169,7 +169,7 @@ describe('add-comparisons-to-branches', () => {
                             isDecreased: true,
                             isIncreased: true,
                             isSame: true,
-                            name: 'c/b/a',
+                            filename: 'c/b/a',
                             path: ['a'],
                             previousSize: 1,
                             removed: true
@@ -187,7 +187,7 @@ describe('add-comparisons-to-branches', () => {
                             isDecreased: true,
                             isIncreased: true,
                             isSame: true,
-                            name: 'c/b2/a2',
+                            filename: 'c/b2/a2',
                             path: ['a2'],
                             previousSize: 1,
                             removed: true
@@ -204,7 +204,7 @@ describe('add-comparisons-to-branches', () => {
                     isDecreased: false,
                     isIncreased: false,
                     isSame: true,
-                    name: '',
+                    filename: '',
                     path: [],
                     previousSize: 2,
                     removed: true
