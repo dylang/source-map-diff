@@ -35,7 +35,7 @@
     "yargs-parser": "20.2.5"
   },
   "devDependencies": {
-    "@types/jest": "26.0.20",
+    "@types/jest": "26.0.22",
     "@types/nodemon": "1.19.0",
     "@types/prettier": "2.2.1",
     "@typescript-eslint/eslint-plugin": "4.15.1",
