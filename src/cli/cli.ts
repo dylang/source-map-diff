@@ -1,8 +1,16 @@
+import path from 'path';
+import { sync as loadJsonFileSync } from 'load-json-file';
 import yargsParser from 'yargs-parser';
 import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff';
 
 export const cli = async () => {
-    const { previousSrc, currentSrc, format } = yargsParser(process.argv);
+    const { previousSrc, currentSrc, format, version } = yargsParser(process.argv);
+
+    if (version) {
+        const { version } = loadJsonFileSync<{ version: string }>(path.join(__dirname, '../../package.json'));
+        console.log(version);
+        return;
+    }
 
     if (!previousSrc && !currentSrc) {
         console.log(`
