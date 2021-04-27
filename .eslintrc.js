@@ -49,9 +49,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         // Super helpful but slow on repos with tons of packages. See notes at top of this file.
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'prettier',
-        'prettier/unicorn',
-        'prettier/@typescript-eslint'
+        'prettier'
     ],
     rules: {
         // We let prettier handle formatting because eslint has issues with formatting types.

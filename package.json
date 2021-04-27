@@ -17,6 +17,7 @@
     "lib"
   ],
   "scripts": {
+    "start": "ts-node -T ./src/cli",
     "build": "rm -rf ./lib && tsc -p .",
     "test": "jest && eslint .",
     "lint": "eslint . --fix",
@@ -26,9 +27,9 @@
   "author": "Dylan Greene",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "common-path-prefix": "^3.0.0",
-    "got": "^11.8.1",
+    "got": "^11.8.2",
     "source-map-explorer": "^2.5.2",
     "text-treeview": "^1.0.1",
     "webtreemap": "^2.0.1",
@@ -41,8 +42,8 @@
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
     "eslint": "7.25.0",
-    "eslint-config-prettier": "7.2.0",
-    "eslint-config-xo": "0.34.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-config-xo": "0.36.0",
     "eslint-import-resolver-typescript": "2.4.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.3.6",
