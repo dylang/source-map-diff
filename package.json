@@ -1,6 +1,6 @@
 {
   "name": "source-map-diff",
-  "version": "1.1.8",
+  "version": "1.2.0",
   "description": "Compare source maps to understand why a bundle changed in size.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
