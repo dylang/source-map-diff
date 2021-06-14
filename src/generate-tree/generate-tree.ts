@@ -29,5 +29,7 @@ export const generateTree = (data: Data[], outputFormat: OutputFormat): string =
         }
     });
 
-    return outputFormat === 'html' ? `<div class="source-map-diff">\n${treeString}\n</div>` : treeString;
+    return outputFormat === 'html'
+        ? `<div class="source-map-diff ${treeString ? 'has-changes' : 'no-changes'}">\n${treeString}</div>`
+        : treeString;
 };
