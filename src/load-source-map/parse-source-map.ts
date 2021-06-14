@@ -40,5 +40,9 @@ export const parseSourceMap = async ({
         size
     ]);
 
-    return Object.fromEntries<number>(paths.sort((a, b) => (a[0] > b[0] ? -1 : 1)));
+    const sortedPaths = paths
+        .filter(([filename]) => !filename.startsWith('.cache'))
+        .sort((a, b) => (a[0] > b[0] ? -1 : 1));
+
+    return Object.fromEntries<number>(sortedPaths);
 };
