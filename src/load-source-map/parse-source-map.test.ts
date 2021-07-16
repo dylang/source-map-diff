@@ -13,6 +13,7 @@ describe('parse-source-map', () => {
             '[generated]': 9713,
             '[sourceMappingURL]': 38,
             '[unmapped]': 175,
+            cache: 681,
             'gatsby-browser.js': 1104,
             'node_modules/@babel/runtime/helpers/arrayLikeToArray.js': 116,
             'node_modules/@babel/runtime/helpers/arrayWithHoles.js': 53,
