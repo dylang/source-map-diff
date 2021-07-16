@@ -49,6 +49,7 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         // Super helpful but slow on repos with tons of packages. See notes at top of this file.
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:import/recommended',
         'prettier'
     ],
     rules: {
