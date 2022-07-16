@@ -29,7 +29,7 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "common-path-prefix": "^3.0.0",
-    "got": "^11.8.2",
+    "got": "^11.8.5",
     "load-json-file": "6.2.0",
     "source-map-explorer": "^2.5.2",
     "text-treeview": "^1.0.1",
