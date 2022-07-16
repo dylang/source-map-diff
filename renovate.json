@@ -1,5 +1,12 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":rebaseStalePrs",
+    ":semanticCommits",
+    ":automergeAll",
+    ":maintainLockFilesWeekly"
+  ],
+  "timezone": "America/New_York",
+  "rangeStrategy": "bump",
+  "schedule": [ "every weekend"]
 }
