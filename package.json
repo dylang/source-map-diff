@@ -34,7 +34,7 @@
     "source-map-explorer": "^2.5.2",
     "text-treeview": "^1.0.2",
     "webtreemap": "^2.0.1",
-    "yargs-parser": "20.2.9"
+    "yargs-parser": "21.0.1"
   },
   "devDependencies": {
     "@types/jest": "28.1.6",
