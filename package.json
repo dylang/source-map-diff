@@ -32,7 +32,7 @@
     "got": "^11.8.5",
     "load-json-file": "6.2.0",
     "source-map-explorer": "^2.5.2",
-    "text-treeview": "^1.0.1",
+    "text-treeview": "^1.0.2",
     "webtreemap": "^2.0.1",
     "yargs-parser": "20.2.9"
   },
