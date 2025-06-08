@@ -1,5 +1,6 @@
 import chalk from 'chalk';
-import { formatLabel } from './format-label';
+import { describe, expect, test } from 'vitest';
+import { formatLabel } from './format-label.js';
 
 describe('format-label', () => {
     test('console', async () => {

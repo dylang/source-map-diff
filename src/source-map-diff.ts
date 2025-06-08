@@ -1,6 +1,6 @@
-import { compareFileSizes } from './compare-file-sizes';
-import { loadSourceMap } from './load-source-map';
-import { generateTree } from './generate-tree';
+import { compareFileSizes } from './compare-file-sizes/index.js';
+import { generateTree } from './generate-tree/index.js';
+import { loadSourceMap } from './load-source-map/index.js';
 
 export interface SourceMapDiffInput {
     currentSrc: string;

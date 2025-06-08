@@ -1,6 +1,6 @@
 import path from 'path';
-import { explore } from 'source-map-explorer';
 import commonPathPrefix from 'common-path-prefix';
+import { explore } from 'source-map-explorer';
 
 interface SourceAndMap {
     src: string | Buffer;

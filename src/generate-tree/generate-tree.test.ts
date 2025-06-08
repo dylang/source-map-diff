@@ -1,6 +1,7 @@
-import { generateTree } from './generate-tree';
+import { describe, expect, test, vi } from 'vitest';
+import { generateTree } from './generate-tree.js';
 
-jest.mock('./format-label', () => ({
+vi.mock('./format-label', () => ({
     formatLabel: (filename: string) => filename
 }));
 
@@ -121,20 +122,20 @@ describe('generate-tree', () => {
             'html'
         );
         expect(result).toMatchInlineSnapshot(`
-            "<div class=\\"source-map-diff has-changes\\">
-            <div class=\\"diff-line\\"><span class=\\"diff-branch\\">├─ </span>added</div>
-            <div class=\\"diff-line\\"><span class=\\"diff-branch\\">├─ </span>bigger</div>
-            <div class=\\"diff-line\\"><span class=\\"diff-branch\\">├─ </span>removed</div>
-            <div class=\\"diff-line\\"><span class=\\"diff-branch\\">└─ </span>smaller</div>
-            </div>"
+          "<div class="source-map-diff has-changes">
+          <div class="diff-line"><span class="diff-branch">├─ </span>added</div>
+          <div class="diff-line"><span class="diff-branch">├─ </span>bigger</div>
+          <div class="diff-line"><span class="diff-branch">├─ </span>removed</div>
+          <div class="diff-line"><span class="diff-branch">└─ </span>smaller</div>
+          </div>"
         `);
     });
 
     test('html no changes', () => {
         const result = generateTree([], 'html');
         expect(result).toMatchInlineSnapshot(`
-            "<div class=\\"source-map-diff no-changes\\">
-            </div>"
+          "<div class="source-map-diff no-changes">
+          </div>"
         `);
     });
 });

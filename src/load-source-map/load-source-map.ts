@@ -1,7 +1,7 @@
 import { existsSync } from 'fs';
-import { fromFileSystem } from './from-file-system';
-import { fromWebSite } from './from-web-site';
-import { parseSourceMap } from './parse-source-map';
+import { fromFileSystem } from './from-file-system.js';
+import { fromWebSite } from './from-web-site.js';
+import { parseSourceMap } from './parse-source-map.js';
 
 export const loadSourceMap = async (filename?: string) => {
     if (!filename || filename.includes('undefined')) {

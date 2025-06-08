@@ -1,6 +1,7 @@
-import path from 'path';
 import { readFileSync } from 'fs';
-import { parseSourceMap } from './parse-source-map';
+import path from 'path';
+import { describe, expect, test } from 'vitest';
+import { parseSourceMap } from './parse-source-map.js';
 
 describe('parse-source-map', () => {
     test('parseSourceMap', async () => {

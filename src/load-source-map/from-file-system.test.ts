@@ -1,6 +1,7 @@
-import { fromFileSystem } from './from-file-system';
+import { describe, expect, test, vi } from 'vitest';
+import { fromFileSystem } from './from-file-system.js';
 
-jest.mock('fs', () => ({
+vi.mock('fs', () => ({
     readFileSync: (filename: string): string => filename
 }));
 

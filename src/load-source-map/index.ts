@@ -1,1 +1,1 @@
-export { loadSourceMap } from './load-source-map';
+export { loadSourceMap } from './load-source-map.js';

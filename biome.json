@@ -31,5 +31,10 @@
       "trailingComma": "none",
       "semicolons": "always"
     }
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
   }
 }

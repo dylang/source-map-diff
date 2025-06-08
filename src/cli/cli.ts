@@ -1,7 +1,7 @@
 import path from 'path';
-import { sync as loadJsonFileSync } from 'load-json-file';
+import { loadJsonFileSync } from 'load-json-file';
 import yargsParser from 'yargs-parser';
-import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff';
+import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff.js';
 
 export const cli = async () => {
     const { previousSrc, currentSrc, format, version } = yargsParser(process.argv);
@@ -25,12 +25,12 @@ export const cli = async () => {
         format === 'html'
             ? await sourceMapDiffAsHtml({ previousSrc, currentSrc })
             : format === 'json'
-            ? JSON.stringify(
-                  await sourceMapDiff({ previousSrc, currentSrc }),
-                  (key, value: unknown) => (key === 'path' ? undefined : value),
-                  2
-              )
-            : await sourceMapDiffForConsole({ previousSrc, currentSrc });
+              ? JSON.stringify(
+                      await sourceMapDiff({ previousSrc, currentSrc }),
+                      (key, value: unknown) => (key === 'path' ? undefined : value),
+                      2
+                  )
+              : await sourceMapDiffForConsole({ previousSrc, currentSrc });
 
     console.log(results);
 };

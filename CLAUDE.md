@@ -22,6 +22,7 @@ pnpm start
 
 ```bash
 # Build the project (outputs to ./lib)
+pnpm build
 ```
 
 ### Testing
@@ -30,8 +31,14 @@ pnpm start
 # Run all tests and linting
 pnpm test
 
+# Run tests in watch mode
+pnpm test:watch
+
 # Run specific test file
-pnpm test path/to/test-file.test.ts
+pnpm vitest run path/to/test-file.test.ts
+
+# Run tests with coverage
+pnpm vitest run --coverage
 
 # Run linting
 pnpm lint
@@ -39,6 +46,14 @@ pnpm lint
 # Format code
 pnpm format
 ```
+
+## Module System
+
+This project uses ECMAScript Modules (ESM). Key implications:
+
+- Import statements require file extensions (e.g., `import { foo } from './bar.js'`)
+- The `package.json` includes `"type": "module"` to indicate ESM usage
+- TypeScript is configured with `"module": "NodeNext"` and `"moduleResolution": "NodeNext"`
 
 ## Project Structure
 

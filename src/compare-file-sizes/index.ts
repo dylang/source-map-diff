@@ -1,1 +1,1 @@
-export { compareFileSizes, Files, Data } from './compare-file-sizes';
+export { compareFileSizes, Files, Data } from './compare-file-sizes.js';
