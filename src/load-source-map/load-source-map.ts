@@ -21,7 +21,7 @@ export const loadSourceMap = async (filename?: string) => {
         const fileSizes = await parseSourceMap(sourcemap);
         return fileSizes;
     } catch (err) {
-        console.warn('source-map-diff', filename, err.message);
+        console.warn('source-map-diff', filename, err);
         return {};
     }
 };

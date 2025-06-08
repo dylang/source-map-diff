@@ -1,8 +1,0 @@
-.vscode
-package.json
-yarn.lock
-readme.md
-build/
-lib/
-dist/
-fixtures/

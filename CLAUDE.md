@@ -8,44 +8,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Install dependencies
-yarn install
-# or
-npm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
 # Start the CLI tool with ts-node (for development)
-yarn start
-# or
-npm run start
+pnpm start
 ```
 
 ### Build
 
 ```bash
 # Build the project (outputs to ./lib)
-yarn build
-# or
-npm run build
 ```
 
 ### Testing
 
 ```bash
 # Run all tests and linting
-yarn test
-# or
-npm run test
+pnpm test
 
 # Run specific test file
-npx jest path/to/test-file.test.ts
+pnpm test path/to/test-file.test.ts
 
 # Run linting
-yarn lint
-# or
-npm run lint
+pnpm lint
+
+# Format code
+pnpm format
 ```
 
 ## Project Structure
@@ -82,13 +74,13 @@ The project has a modular architecture with these key components:
 
 ```bash
 # Compare two local source maps
-yarn start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js
+pnpm run start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js
 
 # Compare with HTML output format
-yarn start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js --format html
+pnpm run start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js --format html
 
 # Compare with JSON output format
-yarn start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js --format json
+pnpm run start --previousSrc path/to/old-file.js --currentSrc path/to/new-file.js --format json
 ```
 
 ### API Usage
