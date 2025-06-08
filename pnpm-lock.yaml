@@ -21,10 +21,10 @@ importers:
         specifier: 7.0.1
         version: 7.0.1
       source-map-explorer:
-        specifier: ^2.5.2
+        specifier: ^2.5.3
         version: 2.5.3
       text-treeview:
-        specifier: ^1.0.1
+        specifier: ^1.0.2
         version: 1.0.2
       webtreemap:
         specifier: ^2.0.1
@@ -37,7 +37,7 @@ importers:
         specifier: 1.5.3
         version: 1.5.3
       '@vitest/coverage-v8':
-        specifier: ^1.4.0
+        specifier: ^1.6.1
         version: 1.6.1(vitest@1.6.1(@types/node@22.15.30))
       ts-node:
         specifier: 10.9.2
@@ -46,7 +46,7 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       vitest:
-        specifier: ^1.4.0
+        specifier: ^1.6.1
         version: 1.6.1(@types/node@22.15.30)
 
 packages:
