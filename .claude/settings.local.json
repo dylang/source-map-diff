@@ -5,7 +5,8 @@
       "Bash(npm test:*)",
       "Bash(pnpm exec:*)",
       "Bash(pnpm lint:*)",
-      "Bash(pnpm biome:ci:*)"
+      "Bash(pnpm biome:ci:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }
