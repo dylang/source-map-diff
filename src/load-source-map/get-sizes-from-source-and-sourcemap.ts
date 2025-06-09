@@ -20,7 +20,7 @@ function getSizesFromSourceAndSourcemap({
     const isBuffer = (data: Buffer | string): data is Buffer => Buffer.isBuffer(data);
     const isString = (data: Buffer | string): data is string => typeof data === 'string';
     const parsedSourceMap: SourceMap = isString(map) || isBuffer(map) ? JSON.parse(map.toString()) : map;
-    const compiledCode: string = src instanceof Buffer ? src.toString() : src;
+    const compiledCode = src.toString();
 
     // Initialize character counts for each source file
     const characterCounts: Map<string, number> = new Map();
