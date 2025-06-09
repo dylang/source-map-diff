@@ -12,22 +12,39 @@ interface SourceMap {
     sourceRoot?: string;
 }
 
+// Pre-compute the Base64 VLQ decode table for performance
+const BASE64_VLQ_LOOKUP: number[] = new Array(128).fill(-1);
+// A-Z: 0-25
+for (let i = 65; i <= 90; i++) BASE64_VLQ_LOOKUP[i] = i - 65;
+// a-z: 26-51
+for (let i = 97; i <= 122; i++) BASE64_VLQ_LOOKUP[i] = i - 97 + 26;
+// 0-9: 52-61
+for (let i = 48; i <= 57; i++) BASE64_VLQ_LOOKUP[i] = i - 48 + 52;
+// +: 62
+BASE64_VLQ_LOOKUP[43] = 62;
+// /: 63
+BASE64_VLQ_LOOKUP[47] = 63;
+
+// Regular expression for filename cleanup, compiled once
+const REPLACE_FILENAME_REGEX = /^[^:]*:\/+/g;
+
 function getSizesFromSourceAndSourcemap({
     src,
     map
 }: { src: Buffer | string; map: Buffer | string }): SourceMapCharacterCount {
     // Parse source map if it's a string
-    const isBuffer = (data: Buffer | string): data is Buffer => Buffer.isBuffer(data);
-    const isString = (data: Buffer | string): data is string => typeof data === 'string';
-    const parsedSourceMap: SourceMap = isString(map) || isBuffer(map) ? JSON.parse(map.toString()) : map;
-    const compiledCode = src.toString();
+    const parsedSourceMap: SourceMap =
+        typeof map === 'string' || Buffer.isBuffer(map) ? JSON.parse(map.toString()) : map;
+    const compiledCode = typeof src === 'string' ? src : src.toString();
 
     // Initialize character counts for each source file
-    const characterCounts: Map<string, number> = new Map();
-    // biome-ignore lint/complexity/noForEach: <explanation>
-    parsedSourceMap.sources.forEach((source) => {
-        characterCounts.set(source, 0);
-    });
+    const characterCounts: Record<string, number> = {};
+    for (let i = 0; i < parsedSourceMap.sources.length; i++) {
+        characterCounts[parsedSourceMap.sources[i]!] = 0;
+    }
+
+    // Pre-calculate line positions for faster lookups
+    const linePositions = getLinePositions(compiledCode);
 
     // Parse VLQ (Variable Length Quantity) mappings
     const mappings = parsedSourceMap.mappings;
@@ -38,7 +55,7 @@ function getSizesFromSourceAndSourcemap({
     let sourceIndex = 0;
 
     // Track the last mapped position for each source
-    const lastMappedPositions: Map<number, { line: number; column: number }> = new Map();
+    const lastMappedPositions: Record<number, { line: number; column: number }> = {};
 
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
         const line = lines[lineIndex] || '';
@@ -51,10 +68,11 @@ function getSizesFromSourceAndSourcemap({
 
         const segments = line.split(',');
 
-        for (const segment of segments) {
+        for (let i = 0; i < segments.length; i++) {
+            const segment = segments[i]!;
             if (segment.length === 0) continue;
 
-            const decoded = decodeVLQ(segment);
+            const decoded = decodeVLQFast(segment);
             if (decoded.length < 4) continue; // Need at least 4 values for a complete mapping
 
             generatedColumn += decoded[0]!;
@@ -62,101 +80,107 @@ function getSizesFromSourceAndSourcemap({
 
             // Track this mapping
             const currentPos = { line: generatedLine, column: generatedColumn };
-            const lastPos = lastMappedPositions.get(sourceIndex);
+            const lastPos = lastMappedPositions[sourceIndex];
 
             if (lastPos) {
                 // Calculate characters between last position and current position
-                const chars = calculateCharactersBetweenPositions(compiledCode, lastPos, currentPos);
+                const chars = calculateCharactersBetweenPositionsFast(compiledCode, linePositions, lastPos, currentPos);
+
                 const sourceName = parsedSourceMap.sources[sourceIndex];
                 if (sourceName) {
-                    characterCounts.set(sourceName, (characterCounts.get(sourceName) || 0) + chars);
+                    characterCounts[sourceName] = (characterCounts[sourceName] || 0) + chars;
                 }
             }
 
-            lastMappedPositions.set(sourceIndex, currentPos);
+            lastMappedPositions[sourceIndex] = currentPos;
         }
 
         generatedLine++;
     }
 
-    // biome-ignore lint/complexity/useRegexLiterals: <explanation>
-    const replaceFilename = new RegExp('^[^:]*:/+', 'g');
+    // Convert to expected output format
+    const result: SourceMapCharacterCount = {};
+    const entries = Object.entries(characterCounts);
+    entries.sort(([a], [b]) => (a > b ? 1 : a < b ? -1 : 0));
 
-    // Convert map to array format
-    return Object.fromEntries(
-        Array.from(characterCounts.entries())
-            .map(
-                ([filename, count]) =>
-                    [
-                        // '^[^:]*:/+': '/' // Remove webpack://
-                        filename.replace(replaceFilename, ''),
-                        count
-                    ] as const
-            )
-            .sort(([a], [b]) => (a > b ? 1 : a < b ? -1 : 0))
-    );
-}
-
-function decodeVLQ(str: string): number[] {
-    const result: number[] = [];
-    let shift = 0;
-    let value = 0;
-
-    for (let i = 0; i < str.length; i++) {
-        const char = str.charCodeAt(i);
-        const digit = base64VLQDecode(char);
-
-        value += (digit & 31) << shift;
-
-        if ((digit & 32) === 0) {
-            // Sign bit
-            result.push((value & 1) === 1 ? -(value >> 1) : value >> 1);
-            value = 0;
-            shift = 0;
-        } else {
-            shift += 5;
-        }
+    for (const [filename, count] of entries) {
+        result[filename.replace(REPLACE_FILENAME_REGEX, '')] = count;
     }
 
     return result;
 }
 
-function base64VLQDecode(char: number): number {
-    if (char >= 65 && char <= 90) return char - 65; // A-Z
-    if (char >= 97 && char <= 122) return char - 97 + 26; // a-z
-    if (char >= 48 && char <= 57) return char - 48 + 52; // 0-9
-    if (char === 43) return 62; // +
-    if (char === 47) return 63; // /
-    throw new Error(`Invalid base64 VLQ character: ${String.fromCharCode(char)}`);
+// Faster VLQ decoder that avoids unnecessary operations
+function decodeVLQFast(str: string): number[] {
+    const result: number[] = [];
+    let i = 0;
+
+    while (i < str.length) {
+        let shift = 0;
+        let value = 0;
+        let continuation;
+
+        do {
+            const c = str.charCodeAt(i++);
+            const digit = BASE64_VLQ_LOOKUP[c];
+            if (digit === -1) {
+                throw new Error(`Invalid base64 VLQ character: ${String.fromCharCode(c)}`);
+            }
+
+            continuation = digit & 32;
+            value += (digit & 31) << shift;
+            shift += 5;
+        } while (continuation);
+
+        // Sign bit
+        result.push((value & 1) === 1 ? -(value >> 1) : value >> 1);
+    }
+
+    return result;
 }
 
-function calculateCharactersBetweenPositions(
+// Pre-calculate line positions for faster position lookup
+function getLinePositions(text: string): number[] {
+    const positions: number[] = [0];
+    let pos = 0;
+
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === '\n') {
+            pos = i + 1;
+            positions.push(pos);
+        }
+    }
+
+    return positions;
+}
+
+// Optimized version that uses pre-calculated line positions
+function calculateCharactersBetweenPositionsFast(
     code: string,
+    linePositions: number[],
     start: { line: number; column: number },
     end: { line: number; column: number }
 ): number {
-    const lines = code.split('\n');
-
+    // Same line - simple calculation
     if (start.line === end.line) {
-        // Same line
         return Math.max(0, end.column - start.column);
     }
 
+    // Different lines
     let totalChars = 0;
+    const startLineLength = (linePositions[start.line + 1] || code.length) - linePositions[start.line]! - 1;
 
     // Characters from start position to end of start line
-    if (start.line < lines.length) {
-        totalChars += Math.max(0, lines[start.line]!.length - start.column);
-        totalChars += 1; // newline character
-    }
+    totalChars += Math.max(0, startLineLength - start.column);
 
     // Complete lines in between
-    for (let i = start.line + 1; i < end.line && i < lines.length; i++) {
-        totalChars += lines[i]!.length + 1; // +1 for newline
+    for (let i = start.line + 1; i < end.line && i < linePositions.length; i++) {
+        const lineLength = (linePositions[i + 1] || code.length) - linePositions[i]!;
+        totalChars += lineLength;
     }
 
     // Characters from start of end line to end position
-    if (end.line < lines.length) {
+    if (end.line < linePositions.length) {
         totalChars += Math.max(0, end.column);
     }
 
