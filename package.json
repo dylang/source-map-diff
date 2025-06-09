@@ -22,10 +22,7 @@
         "typecheck": "tsc --noEmit",
         "test": "vitest run",
         "test:watch": "vitest",
-        "lint": "biome check src --files-ignore-unknown=true",
-        "lint:fix": "biome check --apply src",
-        "format": "biome format src",
-        "format:fix": "biome format --write src",
+        "lint": "biome check --apply src --files-ignore-unknown=true",
         "biome:ci": "biome ci src --files-ignore-unknown=true"
     },
     "repository": "https://github.com/dylang/source-map-diff",

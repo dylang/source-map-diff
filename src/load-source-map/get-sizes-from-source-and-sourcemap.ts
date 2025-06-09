@@ -118,12 +118,12 @@ function decodeVLQFast(str: string): number[] {
     while (i < str.length) {
         let shift = 0;
         let value = 0;
-        let continuation;
+        let continuation: number;
 
         do {
             const c = str.charCodeAt(i++);
             const digit = BASE64_VLQ_LOOKUP[c];
-            if (digit === -1) {
+            if (digit === -1 || digit === undefined) {
                 throw new Error(`Invalid base64 VLQ character: ${String.fromCharCode(c)}`);
             }
 
