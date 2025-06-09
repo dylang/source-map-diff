@@ -4,7 +4,7 @@ import { loadSourceMap } from './load-source-map/index.js';
 
 export interface SourceMapDiffInput {
     currentSrc: string;
-    previousSrc?: string;
+    previousSrc?: string | undefined;
 }
 
 export const sourceMapDiff = async ({ currentSrc, previousSrc }: SourceMapDiffInput) => {

@@ -1,25 +1,41 @@
 {
-    "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
-        "declaration": true,
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "jsx": "react",
-        "lib": ["es2017", "es2018", "es2019"],
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noUnusedLocals": true,
-        "outDir": "lib",
-        "pretty": true,
-        "sourceMap": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "target": "es2017",
-        "typeRoots": ["./node_modules/@types", "./src/@types"]
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules/**/*", "fixtures/**/*"]
+  "compilerOptions": {
+    // Modern ESM targets
+    "target": "ES2022",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+
+    // Output configuration
+    "outDir": "lib",
+    "declaration": true,
+    "sourceMap": true,
+    "removeComments": false,
+
+    // Import handling
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+
+    // Type checking
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "useUnknownInCatchVariables": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Additional safety
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    // Type declaration locations
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**/*", "fixtures/**/*"]
 }

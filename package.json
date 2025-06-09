@@ -26,8 +26,7 @@
         "lint:fix": "biome check --apply src",
         "format": "biome format src",
         "format:fix": "biome format --write src",
-        "biome:ci": "biome ci src --files-ignore-unknown=true",
-        "version": "rm -rf ./lib && tsc -p ."
+        "biome:ci": "biome ci src --files-ignore-unknown=true"
     },
     "repository": "https://github.com/dylang/source-map-diff",
     "author": "Dylan Greene",

@@ -12,7 +12,10 @@ interface SourceMap {
     sourceRoot?: string;
 }
 
-function getSizesFromSourceAndSourcemap({ src, map }: {src: Buffer | string, map: Buffer | string}): SourceMapCharacterCount {
+function getSizesFromSourceAndSourcemap({
+    src,
+    map
+}: { src: Buffer | string; map: Buffer | string }): SourceMapCharacterCount {
     // Parse source map if it's a string
     const isBuffer = (data: Buffer | string): data is Buffer => Buffer.isBuffer(data);
     const isString = (data: Buffer | string): data is string => typeof data === 'string';
@@ -38,7 +41,7 @@ function getSizesFromSourceAndSourcemap({ src, map }: {src: Buffer | string, map
     const lastMappedPositions: Map<number, { line: number; column: number }> = new Map();
 
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
-        const line = lines[lineIndex];
+        const line = lines[lineIndex] || '';
         generatedColumn = 0;
 
         if (line.length === 0) {
@@ -54,14 +57,8 @@ function getSizesFromSourceAndSourcemap({ src, map }: {src: Buffer | string, map
             const decoded = decodeVLQ(segment);
             if (decoded.length < 4) continue; // Need at least 4 values for a complete mapping
 
-            generatedColumn += decoded[0];
-            sourceIndex += decoded[1];
-            // sourceLine += decoded[2];
-            // sourceColumn += decoded[3];
-
-            if (decoded.length >= 5) {
-                // nameIndex += decoded[4];
-            }
+            generatedColumn += decoded[0]!;
+            sourceIndex += decoded[1]!;
 
             // Track this mapping
             const currentPos = { line: generatedLine, column: generatedColumn };
@@ -88,11 +85,14 @@ function getSizesFromSourceAndSourcemap({ src, map }: {src: Buffer | string, map
     // Convert map to array format
     return Object.fromEntries(
         Array.from(characterCounts.entries())
-            .map(([filename, count]) => [
-                // '^[^:]*:/+': '/' // Remove webpack://
-                filename.replace(replaceFilename, ''),
-                count
-            ])
+            .map(
+                ([filename, count]) =>
+                    [
+                        // '^[^:]*:/+': '/' // Remove webpack://
+                        filename.replace(replaceFilename, ''),
+                        count
+                    ] as const
+            )
             .sort(([a], [b]) => (a > b ? 1 : a < b ? -1 : 0))
     );
 }
@@ -146,13 +146,13 @@ function calculateCharactersBetweenPositions(
 
     // Characters from start position to end of start line
     if (start.line < lines.length) {
-        totalChars += Math.max(0, lines[start.line].length - start.column);
+        totalChars += Math.max(0, lines[start.line]!.length - start.column);
         totalChars += 1; // newline character
     }
 
     // Complete lines in between
     for (let i = start.line + 1; i < end.line && i < lines.length; i++) {
-        totalChars += lines[i].length + 1; // +1 for newline
+        totalChars += lines[i]!.length + 1; // +1 for newline
     }
 
     // Characters from start of end line to end position

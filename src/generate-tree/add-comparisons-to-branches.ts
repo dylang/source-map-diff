@@ -1,22 +1,22 @@
-import { Tree } from 'text-treeview';
-import { Data } from '../compare-file-sizes';
+import { type Tree } from 'text-treeview';
+import { type Data } from '../compare-file-sizes';
 
-export const addComparisonsToBranches = (tree: Tree<Data>[]) => {
+export const addComparisonsToBranches = (tree: Tree<Data>[]): Tree<Data>[] => {
     /*
         Traverse until we hit data
         Return data
-        Set node's data based on combination of all returned data
+        Set node's data based on a combination of all returned data
      */
     return tree.map((node: Tree<Data>) => {
         if (!node.data) {
             // Must be a branch
-            const children = addComparisonsToBranches(node.children);
-            const currentSize = children.reduce(
-                (acc: number, { data }: { data?: Data }) => acc + (data ? data.currentSize : 0),
+            const children: Tree<Data>[] = addComparisonsToBranches(node.children);
+            const currentSize: number = children.reduce<number>(
+                (acc, { data }: { data?: Data }) => acc + (data ? data.currentSize : 0),
                 0
             );
-            const previousSize = children.reduce(
-                (acc: number, { data }: { data?: Data }) => acc + (data ? data.previousSize : 0),
+            const previousSize: number = children.reduce<number>(
+                (acc, { data }: { data?: Data }) => acc + (data ? data.previousSize : 0),
                 0
             );
             node.data = {
@@ -32,7 +32,6 @@ export const addComparisonsToBranches = (tree: Tree<Data>[]) => {
                 isSame: currentSize === previousSize,
                 filename: '',
                 path: [],
-
                 removed: children.every(({ data }: { data?: Data }) => !data || data.removed)
             };
 
@@ -46,9 +45,12 @@ export const addComparisonsToBranches = (tree: Tree<Data>[]) => {
         if (node.children.length === 1) {
             const [singleChild] = node.children;
             return {
+                data: undefined,
+                size: 0,
+                children: [],
                 ...singleChild,
-                id: `${node.id}/${singleChild.id}`,
-                name: `${node.name}/${singleChild.name}`
+                id: `${node.id}/${singleChild!.id}`,
+                name: `${node.name}/${singleChild!.name}`
             };
         }
 

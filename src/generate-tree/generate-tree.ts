@@ -1,5 +1,5 @@
 import treeView from 'text-treeview';
-import { Data } from '../compare-file-sizes/index.js';
+import { type Data } from '../compare-file-sizes/index.js';
 import { addComparisonsToBranches } from './add-comparisons-to-branches.js';
 import { combinePathsIntoTree } from './combine-paths-into-tree.js';
 import { formatLabel } from './format-label.js';
