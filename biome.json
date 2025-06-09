@@ -36,5 +36,14 @@
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
+  },
+  "files": {
+    "ignore": [
+      "**/fixtures/**",
+      "**/node_modules/**",
+      "**/lib/**",
+      "**/dist/**",
+      "**/*.test.ts"
+    ]
   }
 }
