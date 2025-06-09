@@ -15,7 +15,7 @@
     "bin": {
         "source-map-diff": "lib/cli/index.js"
     },
-    "files": ["src", "lib"],
+    "files": ["lib"],
     "scripts": {
         "start": "node --loader ts-node/esm ./src/cli",
         "build": "rm -rf ./lib && tsc -p .",
