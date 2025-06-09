@@ -1,75 +1,51 @@
 {
-  "name": "source-map-diff",
-  "version": "1.3.1",
-  "description": "Compare source maps to understand why a bundle changed in size.",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "keywords": [
-    "sourcemap",
-    "source-map",
-    "bundle size"
-  ],
-  "bin": {
-    "source-map-diff": "lib/cli/index.js"
-  },
-  "files": [
-    "src",
-    "lib"
-  ],
-  "scripts": {
-    "start": "ts-node -T ./src/cli",
-    "build": "rm -rf ./lib && tsc -p .",
-    "test": "jest && eslint .",
-    "lint": "eslint . --fix",
-    "version": "rm -rf ./lib && tsc -p ."
-  },
-  "repository": "https://github.com/dylang/source-map-diff",
-  "author": "Dylan Greene",
-  "license": "MIT",
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "common-path-prefix": "^3.0.0",
-    "got": "^11.8.6",
-    "load-json-file": "6.2.0",
-    "source-map-explorer": "^2.5.3",
-    "text-treeview": "^1.0.2",
-    "webtreemap": "^2.0.1",
-    "yargs-parser": "21.1.1"
-  },
-  "devDependencies": {
-    "@types/jest": "28.1.8",
-    "@types/nodemon": "1.19.6",
-    "@types/prettier": "2.7.3",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-config-xo": "0.43.1",
-    "eslint-import-resolver-typescript": "3.5.5",
-    "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-jest": "24.7.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-promise": "6.1.1",
-    "eslint-plugin-unicorn": "34.0.1",
-    "jest": "28.1.3",
-    "np": "8.0.1",
-    "prettier": "2.8.8",
-    "ts-jest": "28.0.8",
-    "ts-node": "10.9.1",
-    "typescript": "5.0.4"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+    "name": "source-map-diff",
+    "version": "2.0.0",
+    "description": "Compare source maps to understand why a bundle changed in size.",
+    "type": "module",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "exports": {
+        ".": {
+            "default": "./lib/index.js",
+            "types": "./lib/index.d.ts"
+        }
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)test)\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ]
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  }
+    "keywords": ["sourcemap", "source-map", "bundle size"],
+    "bin": {
+        "source-map-diff": "lib/cli/index.js"
+    },
+    "files": ["lib"],
+    "scripts": {
+        "start": "node --loader ts-node/esm ./src/cli",
+        "build": "rm -rf ./lib && tsc -p .",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "lint": "biome check --apply src --files-ignore-unknown=true",
+        "biome:ci": "biome ci src --files-ignore-unknown=true"
+    },
+    "repository": "https://github.com/dylang/source-map-diff",
+    "author": "Dylan Greene",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^5.4.1",
+        "common-path-prefix": "^3.0.0",
+        "got": "^14.4.7",
+        "load-json-file": "7.0.1",
+        "text-treeview": "1.0.2",
+        "webtreemap": "2.0.1",
+        "yargs-parser": "21.1.1"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.5.3",
+        "@types/yargs-parser": "21.0.3",
+        "@vitest/coverage-v8": "^3.2.2",
+        "ts-node": "10.9.2",
+        "typescript": "5.8.3",
+        "vitest": "^3.2.2"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    }
 }

@@ -1,4 +1,5 @@
-import { addComparisonsToBranches } from './add-comparisons-to-branches';
+import { describe, expect, test } from 'vitest';
+import { addComparisonsToBranches } from './add-comparisons-to-branches.js';
 
 describe('add-comparisons-to-branches', () => {
     test('addComparisonsToBranches', () => {

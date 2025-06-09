@@ -1,0 +1,7 @@
+node_modules
+lib
+dist
+**/fixtures/**
+src/fixtures
+**/*.test.ts
+**/*.map

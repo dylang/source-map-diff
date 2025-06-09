@@ -1,4 +1,5 @@
-import { combinePathsIntoTree } from './combine-paths-into-tree';
+import { describe, expect, test } from 'vitest';
+import { combinePathsIntoTree } from './combine-paths-into-tree.js';
 
 describe('combine-paths-into-tree', () => {
     test('combinePathsIntoTree', () => {

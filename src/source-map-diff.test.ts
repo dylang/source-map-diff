@@ -1,7 +1,8 @@
-import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from './source-map-diff';
+import { describe, expect, test, vi } from 'vitest';
+import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from './source-map-diff.js';
 
-jest.mock('./generate-tree', () => ({ generateTree: (diff: unknown) => diff }));
-jest.mock('./load-source-map', () => ({
+vi.mock('./generate-tree', () => ({ generateTree: (diff: unknown) => diff }));
+vi.mock('./load-source-map', () => ({
     loadSourceMap: (name: string) =>
         name === 'current.js'
             ? { 'src/bigger': 10000, 'src/smaller': 200, 'src/same': 500 }

@@ -1,4 +1,5 @@
-import { compareFileSizes } from './compare-file-sizes';
+import { describe, expect, test } from 'vitest';
+import { compareFileSizes } from './compare-file-sizes.js';
 
 describe('compare-file-sizes', () => {
     test('compareFileSizes', () => {

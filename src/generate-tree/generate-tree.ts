@@ -1,8 +1,8 @@
 import treeView from 'text-treeview';
-import { Data } from '../compare-file-sizes';
-import { combinePathsIntoTree } from './combine-paths-into-tree';
-import { addComparisonsToBranches } from './add-comparisons-to-branches';
-import { formatLabel } from './format-label';
+import { type Data } from '../compare-file-sizes/index.js';
+import { addComparisonsToBranches } from './add-comparisons-to-branches.js';
+import { combinePathsIntoTree } from './combine-paths-into-tree.js';
+import { formatLabel } from './format-label.js';
 
 export type OutputFormat = 'html' | 'console';
 

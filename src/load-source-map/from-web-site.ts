@@ -1,5 +1,5 @@
-import { URL } from 'url';
 import path from 'path';
+import { URL } from 'url';
 import got from 'got';
 
 const tryMap = async (srcUrl: string, currentSrc: string) => {

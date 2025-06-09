@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(npm test:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm biome:ci:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}
