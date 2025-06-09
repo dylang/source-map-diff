@@ -27,6 +27,7 @@ BASE64_VLQ_LOOKUP[47] = 63;
 
 // Regular expression for filename cleanup, compiled once
 const REPLACE_FILENAME_REGEX = /^[^:]*:\/+/g;
+const REPLACE_DOTDOT_REGEX = /^(\.\.\/)+/g;
 
 function getSizesFromSourceAndSourcemap({
     src,
@@ -104,7 +105,7 @@ function getSizesFromSourceAndSourcemap({
     entries.sort(([a], [b]) => (a > b ? 1 : a < b ? -1 : 0));
 
     for (const [filename, count] of entries) {
-        result[filename.replace(REPLACE_FILENAME_REGEX, '')] = count;
+        result[filename.replace(REPLACE_FILENAME_REGEX, '').replace(REPLACE_DOTDOT_REGEX, '/')] = count;
     }
 
     return result;
