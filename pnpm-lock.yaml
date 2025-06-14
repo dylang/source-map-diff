@@ -37,7 +37,7 @@ importers:
         specifier: 21.0.3
         version: 21.0.3
       '@vitest/coverage-v8':
-        specifier: ^3.2.2
+        specifier: ^3.2.3
         version: 3.2.3(vitest@3.2.3(@types/node@22.15.30))
       ts-node:
         specifier: 10.9.2
@@ -46,7 +46,7 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       vitest:
-        specifier: ^3.2.2
+        specifier: ^3.2.3
         version: 3.2.3(@types/node@22.15.30)
 
 packages:
