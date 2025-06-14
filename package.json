@@ -35,7 +35,7 @@
         "load-json-file": "7.0.1",
         "text-treeview": "1.0.2",
         "webtreemap": "2.0.1",
-        "yargs-parser": "21.1.1"
+        "yargs-parser": "22.0.0"
     },
     "devDependencies": {
         "@biomejs/biome": "1.9.4",
