@@ -1,4 +1,4 @@
-import { existsSync } from 'fs';
+import { existsSync } from 'node:fs';
 import { fromFileSystem } from './from-file-system.js';
 import { fromWebSite } from './from-web-site.js';
 import { getSizesFromSourceAndSourcemap } from './get-sizes-from-source-and-sourcemap.js';
@@ -21,7 +21,11 @@ export const loadSourceMap = async (filename?: string) => {
         const fileSizes = getSizesFromSourceAndSourcemap(sourcemap);
         return fileSizes;
     } catch (err) {
-        console.warn('source-map-diff', filename, err);
-        return {};
+        if (err instanceof Error) {
+            console.warn('source-map-diff', filename);
+            console.warn(process.env.DEBUG ? err : err.message);
+            return {};
+        }
+        throw err;
     }
 };

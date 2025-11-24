@@ -7,22 +7,28 @@
     "types": "lib/index.d.ts",
     "exports": {
         ".": {
-            "default": "./lib/index.js",
-            "types": "./lib/index.d.ts"
+            "types": "./lib/index.d.ts",
+            "default": "./lib/index.js"
         }
     },
-    "keywords": ["sourcemap", "source-map", "bundle size"],
+    "keywords": [
+        "sourcemap",
+        "source-map",
+        "bundle size"
+    ],
     "bin": {
         "source-map-diff": "lib/cli/index.js"
     },
-    "files": ["lib"],
+    "files": [
+        "lib"
+    ],
     "scripts": {
-        "start": "node --loader ts-node/esm ./src/cli",
+        "start": "jiti ./src/cli/index.ts",
         "build": "rm -rf ./lib && tsc -p .",
         "typecheck": "tsc --noEmit",
         "test": "vitest run",
         "test:watch": "vitest",
-        "lint": "biome check --apply src --files-ignore-unknown=true",
+        "lint": "biome check --fix --unsafe src --files-ignore-unknown=true",
         "biome:ci": "biome ci src --files-ignore-unknown=true"
     },
     "repository": "https://github.com/dylang/source-map-diff",
@@ -31,7 +37,7 @@
     "dependencies": {
         "chalk": "^5.6.2",
         "common-path-prefix": "^3.0.0",
-        "got": "^14.6.4",
+        "got": "^14.6.5",
         "load-json-file": "7.0.1",
         "text-treeview": "1.0.2",
         "webtreemap": "2.0.1",
@@ -39,11 +45,12 @@
     },
     "devDependencies": {
         "@biomejs/biome": "2.3.5",
+        "@types/node": "22.19.1",
         "@types/yargs-parser": "21.0.3",
-        "@vitest/coverage-v8": "^4.0.10",
-        "ts-node": "10.9.2",
+        "@vitest/coverage-v8": "^4.0.13",
+        "jiti": "^2.6.1",
         "typescript": "5.9.3",
-        "vitest": "^4.0.10"
+        "vitest": "^4.0.13"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org"

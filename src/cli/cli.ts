@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { loadJsonFileSync } from 'load-json-file';
 import yargsParser from 'yargs-parser';
 import { sourceMapDiff, sourceMapDiffAsHtml, sourceMapDiffForConsole } from '../source-map-diff.js';

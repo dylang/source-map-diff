@@ -1,8 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.3.5/schema.json",
   "linter": {
     "enabled": true,
     "rules": {
@@ -12,7 +9,7 @@
       },
       "style": {
         "noNonNullAssertion": "off",
-        "useShorthandArrayType": "error"
+        "useConsistentArrayType": "error"
       },
       "suspicious": {
         "noExplicitAny": "warn"
@@ -28,7 +25,7 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "trailingComma": "none",
+      "trailingCommas": "none",
       "semicolons": "always"
     }
   },
@@ -38,12 +35,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignore": [
-      "**/fixtures/**",
-      "**/node_modules/**",
-      "**/lib/**",
-      "**/dist/**",
-      "**/*.test.ts"
+    "includes": [
+      "**",
+      "!**/fixtures/**",
+      "!**/node_modules/**",
+      "!**/lib/**",
+      "!**/dist/**",
+      "!**/*.test.ts"
     ]
   }
 }

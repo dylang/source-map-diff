@@ -32,7 +32,10 @@ const REPLACE_DOTDOT_REGEX = /^(\.\.\/)+/g;
 function getSizesFromSourceAndSourcemap({
     src,
     map
-}: { src: Buffer | string; map: Buffer | string }): SourceMapCharacterCount {
+}: {
+    src: Buffer | string;
+    map: Buffer | string;
+}): SourceMapCharacterCount {
     // Parse source map if it's a string
     const parsedSourceMap: SourceMap =
         typeof map === 'string' || Buffer.isBuffer(map) ? JSON.parse(map.toString()) : map;
