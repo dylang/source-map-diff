@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import { type Data } from '../compare-file-sizes';
-import { type OutputFormat } from './generate-tree';
+import type { Data } from '../compare-file-sizes';
+import type { OutputFormat } from './generate-tree';
 
 export const formatLabel = (
     filename: string,

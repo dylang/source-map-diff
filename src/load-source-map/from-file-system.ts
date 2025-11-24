@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync } from 'node:fs';
 
 export const fromFileSystem = (srcFilename: string, mapFilename = `${srcFilename}.map`) => {
     const currentSrcBuffer = readFileSync(srcFilename);

@@ -1,5 +1,5 @@
-import { type Tree } from 'text-treeview';
-import { type Data } from '../compare-file-sizes';
+import type { Tree } from 'text-treeview';
+import type { Data } from '../compare-file-sizes';
 
 export type SortBy = 'name' | 'size';
 
