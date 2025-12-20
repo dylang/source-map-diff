@@ -47,10 +47,10 @@
         "@biomejs/biome": "2.3.8",
         "@types/node": "22.19.3",
         "@types/yargs-parser": "21.0.3",
-        "@vitest/coverage-v8": "^4.0.15",
+        "@vitest/coverage-v8": "^4.0.16",
         "jiti": "^2.6.1",
         "typescript": "5.9.3",
-        "vitest": "^4.0.15"
+        "vitest": "^4.0.16"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
