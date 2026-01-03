@@ -37,7 +37,7 @@
     "dependencies": {
         "chalk": "^5.6.2",
         "common-path-prefix": "^3.0.0",
-        "got": "^14.6.5",
+        "got": "^14.6.6",
         "load-json-file": "7.0.1",
         "text-treeview": "1.0.2",
         "webtreemap": "2.0.1",
