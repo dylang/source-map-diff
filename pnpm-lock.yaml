@@ -634,8 +634,8 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  normalize-url@8.1.0:
-    resolution: {integrity: sha512-X06Mfd/5aKsRHc0O0J5CUedwnPmnDtLF2+nq+KN9KSDlJHkPuh0JUviWjEWMe0SW/9TDdSLVPuk7L5gGTIA1/w==}
+  normalize-url@8.1.1:
+    resolution: {integrity: sha512-JYc0DPlpGWB40kH5g07gGTrYuMqV653k3uBKY6uITPWds3M0ov3GaWGp9lbE3Bzngx8+XkfzgvASb9vk9JDFXQ==}
     engines: {node: '>=14.16'}
 
   obug@2.1.1:
@@ -1119,7 +1119,7 @@ snapshots:
       http-cache-semantics: 4.2.0
       keyv: 5.5.5
       mimic-response: 4.0.0
-      normalize-url: 8.1.0
+      normalize-url: 8.1.1
       responselike: 4.0.2
 
   chai@6.2.2: {}
@@ -1270,7 +1270,7 @@ snapshots:
 
   nanoid@3.3.11: {}
 
-  normalize-url@8.1.0: {}
+  normalize-url@8.1.1: {}
 
   obug@2.1.1: {}
 
