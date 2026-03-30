@@ -46,8 +46,8 @@ importers:
         specifier: ^2.6.1
         version: 2.6.1
       typescript:
-        specifier: 5.9.3
-        version: 5.9.3
+        specifier: 6.0.2
+        version: 6.0.2
       vitest:
         specifier: ^4.1.2
         version: 4.1.2(@types/node@22.19.15)(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@22.19.15)(jiti@2.6.1))
@@ -639,8 +639,8 @@ packages:
     resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
     engines: {node: '>=16'}
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1223,7 +1223,7 @@ snapshots:
 
   type-fest@4.41.0: {}
 
-  typescript@5.9.3: {}
+  typescript@6.0.2: {}
 
   undici-types@6.21.0: {}
 
