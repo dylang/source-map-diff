@@ -15,7 +15,7 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       got:
-        specifier: ^15.0.1
+        specifier: ^15.0.2
         version: 15.0.2
       load-json-file:
         specifier: 7.0.1
