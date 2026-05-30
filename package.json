@@ -44,7 +44,7 @@
         "yargs-parser": "22.0.0"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.4.15",
+        "@biomejs/biome": "2.4.16",
         "@types/node": "22.19.19",
         "@types/yargs-parser": "21.0.3",
         "@vitest/coverage-v8": "^4.1.7",
