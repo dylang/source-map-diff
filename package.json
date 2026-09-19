@@ -45,7 +45,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "2.5.14",
-        "@types/node": "22.20.2",
+        "@types/node": "22.20.4",
         "@types/yargs-parser": "21.0.3",
         "@vitest/coverage-v8": "^5.0.0",
         "jiti": "^2.7.0",
